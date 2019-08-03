@@ -1,0 +1,32 @@
+{% extends 'formbase.html' %}
+
+{% block links %}                        
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.index') }}">Home
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.blog') }}">Blog</a>
+</li>
+{% if not current_user.is_authenticated %}
+<li class="nav-item active">
+    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+	<span class="sr-only">(current)</span>
+</li>
+{% else %}
+{% if current_user.role == "ADMIN" %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.add_post') }}">Add Post</a>
+</li>
+{% endif %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+</li>
+{% endif %}
+{% endblock %}
+
+
+{% block heading %}Register{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block links %}                        
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.index') }}">Home
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.blog') }}">Blog</a>
+</li>
+{% if not current_user.is_authenticated %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+</li>
+{% else %}
+{% if current_user.role == "ADMIN" %}
+<li class="nav-item active">
+    <a class="nav-link" href="{{ url_for('main.add_post') }}">Add Post</a>
+    <span class="sr-only">(current)</span>
+</li>
+{% endif %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>{{ title }}</h1>
+
+<h5>Hi, my name is Jessica. I'm majoring in Business, CS, and Math at UT Austin.</h5>
+
+{% endblock %}

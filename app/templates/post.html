@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block links %}                        
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.index') }}">Home
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="{{ url_for('main.blog') }}">Blog</a>
+    <span class="sr-only">(current)</span>
+</li>
+{% if not current_user.is_authenticated %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+</li>
+{% else %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.login') }}">Add Post</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<h6><a href="{{ url_for('main.blog') }}"><i class="fas fa-arrow-left"></i> Back</a><h6>
+{% filter markdown %}
+* * * 
+###### {{ post.timestamp.strftime("%m/%d/%Y, %H:%M:%S") }}
+{{ post.body }}
+{% endfilter %}
+{% endblock %}

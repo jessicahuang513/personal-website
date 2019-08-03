@@ -1,1 +1,52 @@
-<p>Hello world!</p>
+{% extends 'base.html' %}
+
+{% block links %}                        
+<li class="nav-item active">
+    <a class="nav-link" href="#">Home
+    <span class="sr-only">(current)</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.blog') }}">Blog</a>
+</li>
+{% if not current_user.is_authenticated %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+</li>
+{% else %}
+{% if current_user.role == "ADMIN" %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.add_post') }}">Add Post</a>
+</li>
+{% endif %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+</li>
+{% endif %}
+{% endblock %}
+{% block content %}
+<!-- Page Content -->
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <br><br><br><br><br><br>
+            <img src="/static/img/tiny_jessica.png"></img>
+            <h1 class="mt-5">hi there, i'm jessica.</h1>
+            <p class = "lead">[ <span class="typer" id="main" data-words="I LIKE HOT DOGS AND CODING, CHECK OUT MY GITHUB" data-delay="60" data-deleteDelay="500"></span><span class="cursor" data-owner="main"></span> ]</p>
+            <script async src="https://unpkg.com/typer-dot-js@0.1.0/typer.js"></script>
+        </div>
+        <!-- <div class="col-lg-12 text-left">
+            <h2 class="mt-5">posts</h2>
+            <h2><small></small></h2>
+            <p class="lead">Complete with pre-defined file paths and responsive navigation!</p>
+            <ul class="list-unstyled">
+              <li>Bootstrap 4.3.1</li>
+              <li>jQuery 3.4.1</li>
+            </ul>
+            </div>
+            </div> -->
+    </div>
+
+{% endblock %}

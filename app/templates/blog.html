@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block links %}                        
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.index') }}">Home
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="{{ url_for('main.blog') }}">Blog</a>
+    <span class="sr-only">(current)</span>
+</li>
+{% if not current_user.is_authenticated %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+</li>
+{% else %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.login') }}">Add Post</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Page Content -->
+<div class="container">
+		<h1>{{ title }}</h1>
+            {% for post in posts %}
+			{% include '_post.html' %}
+			{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'lektonregular';
+    src: url('/static/fonts/lekton-regular-webfont.woff2') format('woff2'),
+         url('static/fonts/lekton-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1{
+  font-family: "lektonregular";
+}
+
+body {
+  font-family: 'lektonregular' !important;
+}
+
+/*nav {
+    font-family: "lektonregular";
+}*/
+/*.container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+*/
+.fullscreen {
+    height: 600px;
+    position: relative
+}
+
+.pagination-centered {
+  text-align: center;
+}
+
+.project .image {
+  max-width: 50px;
+  min-width: 50px;
+}

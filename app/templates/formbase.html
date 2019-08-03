@@ -1,0 +1,19 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+  <h1>{% block heading %}{% endblock %}</h1>               
+   <p>{% block description %}{% endblock %}</p>
+  <div class="col-lg-6 bg-white">
+               <div class="form d-flex align-items-center">
+                  <div class="content">
+                     {% if form %}
+                     {{ wtf.quick_form(form) }}
+                     {% endif %}
+                     {% block form_links %}{% endblock %}
+                  </div>
+               </div>
+    </div>
+{% endblock %}
